@@ -20,9 +20,6 @@ provider "aws" {
   region = var.aws_region
 }
 
-module "aws-module-registry" {
-
-}
 
 # 조건부 EIP 생성
 module "eip" {
