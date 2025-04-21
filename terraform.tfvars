@@ -1,3 +1,5 @@
+aws_region         = "ap-northeast-2"
+
 aws_eip_name                 = "test-eip"
 aws_eip_vpc                  = true
 #aws_eip_network_border_group = var.aws_eip_network_border_group
@@ -5,7 +7,7 @@ aws_eip_vpc                  = true
 #aws_eip_tags                 = var.aws_eip_tags
 
 
-#aws_region         = "ap-northeast-2"
+
 #ami                = "ami-xxxxx"
 #instance_type      = "t3.micro"
 #key_name           = "keyName"
