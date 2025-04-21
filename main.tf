@@ -23,7 +23,7 @@ provider "aws" {
 
 # 조건부 EIP 생성
 module "eip" {
-  source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws_elastic_ip"
+  source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_elastic_ip"  
   version = "1.0.0"
   count  = var.aws_eip_allocation_id == "" ? 1 : 0
   aws_eip_name                 = var.aws_eip_name
