@@ -16,15 +16,15 @@ aws_eip_tags = {
 
 ### AWS EC2 Configs ###
 
-#aws_ec2_ami                = "ami-xxxxx"
-#aws_ec2_instance_type      = "t3.micro"
-#aws_ec2_key_name           = "keyName"
-#aws_ec2_subnet_id          = "subnet-xxxxxx"
-#aws_ec2_security_group_ids = ["sg-xxxxx"]
-#aws_ec2_associate_public_ip = true
-#aws_ec2_root_volume_size   = 20
-#aws_ec2_root_volume_type   = "gp3"
-#aws_ec2_instance_name      = "terraform-ec2-test"
+aws_ec2_ami                 = "ami-0f17cb072499f67d7"
+aws_ec2_instance_type       = "t3.micro"
+aws_ec2_key_name            = "cslee-ciw0707"
+aws_ec2_subnet_id           = "subnet-0e3421ece9d178df5"
+aws_ec2_security_group_ids  = ["sg-0fd445f3258c05d2c"]
+aws_ec2_associate_public_ip = true
+aws_ec2_root_volume_size    = 20
+aws_ec2_root_volume_type    = "gp3"
+aws_ec2_instance_name       = "terraform-ec2-test"
 
 #aws_ec2_ebs_volumes = [
 #  {
