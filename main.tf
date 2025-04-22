@@ -37,8 +37,7 @@ module "eip" {
 module "ec2_instance" {
   source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_ec2"    
   version = "1.0.0"
-  aws_ec2_instance_name      	  = var.aws_ec2_instance_name
-  aws_region 		                = var.aws_region
+  aws_ec2_instance_name      	  = var.aws_ec2_instance_name  
   aws_ec2_ami           	      = var.aws_ec2_ami
   aws_ec2_instance_type 	      = var.aws_ec2_instance_type
   aws_ec2_key_name      	      = var.aws_ec2_key_name
