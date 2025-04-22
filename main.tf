@@ -53,5 +53,5 @@ module "eip_associate" {
   source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_elastic_ip_associate"  
   version = "1.0.1"  
   aws_eip_associate_instance_id = module.ec2_instance.instance_id
-  aws_eip_associate_allocation_id = var.aws_eip_allocation_id != "" || var.aws_eip_allocation_id == null ? var.aws_eip_associate_allocation_id : module.eip[0].allocation_id
+  aws_eip_associate_allocation_id = var.aws_eip_allocation_id == "" || var.aws_eip_allocation_id == null ? module.eip[0].allocation_id : var.aws_eip_allocation_id 
 }
