@@ -24,7 +24,7 @@ provider "aws" {
 # 조건부 EIP 생성
 module "eip" {
   source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_elastic_ip"
-  version = "1.0.1"
+  version = "1.0.2"
   count  = var.aws_eip_allocation_id == "" || var.aws_eip_allocation_id == null  ? 1 : 0
   aws_eip_name                 = var.aws_eip_name
   aws_eip_domain               = var.aws_eip_domain
@@ -36,7 +36,7 @@ module "eip" {
 # EC2 인스턴스 생성
 module "ec2_instance" {
   source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_ec2"  
-  version = "1.0.1"
+  version = "1.0.2"
   aws_ec2_instance_name      	  = var.aws_ec2_instance_name  
   aws_ec2_ami           	      = var.aws_ec2_ami
   aws_ec2_instance_type 	      = var.aws_ec2_instance_type
@@ -51,7 +51,7 @@ module "ec2_instance" {
 
 module "eip_associate" {  
   source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_elastic_ip_associate"  
-  version = "1.0.1"  
+  version = "1.0.2"  
   aws_eip_associate_instance_id = module.ec2_instance.instance_id
   aws_eip_associate_allocation_id = var.aws_eip_allocation_id == "" || var.aws_eip_allocation_id == null ? module.eip[0].allocation_id : var.aws_eip_allocation_id 
 }
