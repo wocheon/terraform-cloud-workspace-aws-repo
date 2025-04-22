@@ -49,9 +49,9 @@ module "ec2_instance" {
 }
 
 
-#module "eip_associate" {
-#  source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws_elastic_ip_associate "
-#  version = "1.0.0"
-#  instance_id = moudle.ec2_instance.instance_id
-#  allocation_id = var.eip_allocation_id != "" ? var.eip_allocation_id : module.eip[0].allocation_id
-#}
+module "eip_associate" {  
+  source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_elastic_ip_associate"  
+  version = "1.0.1"  
+  instance_id = moudle.ec2_instance.instance_id
+  allocation_id = var.eip_allocation_id != "" ? var.eip_allocation_id : module.eip[0].allocation_id
+}

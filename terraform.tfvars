@@ -6,7 +6,7 @@ aws_region         = "ap-northeast-2"
 
 aws_eip_allocation_id        = ""
 aws_eip_name                 = "test-eip"
-aws_eip_vpc                  = true
+aws_eip_domain               = "vpc"
 #aws_eip_network_border_group = var.aws_eip_network_border_group
 #aws_eip_public_ipv4_pool     = var.aws_eip_public_ipv4_pool
 aws_eip_tags = {
