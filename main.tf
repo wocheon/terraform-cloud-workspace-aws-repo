@@ -33,20 +33,21 @@ module "eip" {
   aws_eip_tags                 = var.aws_eip_tags
 }
 
-#module "ec2_instance" {
-#  source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws_ec2"
-#  version = "1.0.0"
-#  aws_region 		= var.aws_region
-#  ami           	= var.ami
-#  instance_type 	= var.instance_type
-#  key_name      	= var.key_name
-#  subnet_id     	= var.subnet_id
-#  security_group_ids 	= var.security_group_ids
-#  associate_public_ip 	= var.associate_public_ip
-#  root_volume_size   	= var.root_volume_size
-#  root_volume_type   	= var.root_volume_type
-#  instance_name      	= var.instance_name
-#}
+# EC2 인스턴스 생성
+module "ec2_instance" {
+  source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_ec2"    
+  version = "1.0.0"
+  aws_ec2_instance_name      	  = var.aws_ec2_instance_name
+  aws_region 		                = var.aws_region
+  aws_ec2_ami           	      = var.aws_ec2_ami
+  aws_ec2_instance_type 	      = var.aws_ec2_instance_type
+  aws_ec2_key_name      	      = var.aws_ec2_key_name
+  aws_ec2_subnet_id     	      = var.aws_ec2_subnet_id
+  aws_ec2_security_group_ids 	  = var.aws_ec2_security_group_ids
+  aws_ec2_associate_public_ip 	= var.aws_ec2_associate_public_ip
+  aws_ec2_root_volume_size   	  = var.aws_ec2_root_volume_size
+  aws_ec2_root_volume_type   	  = var.aws_ec2_root_volume_type
+}
 
 
 #module "eip_associate" {
