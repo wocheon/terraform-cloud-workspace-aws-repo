@@ -28,7 +28,7 @@ module "eip" {
   count  = var.aws_eip_allocation_id == "" ? 1 : 0
   aws_eip_name                 = var.aws_eip_name
   aws_eip_vpc                  = var.aws_eip_vpc
-  aws_eip_network_border_group = var.aws_eip_network_border_group
+  aws_eip_network_border_group = var.aws_region
   aws_eip_public_ipv4_pool     = var.aws_eip_public_ipv4_pool
   aws_eip_tags                 = var.aws_eip_tags
 }
