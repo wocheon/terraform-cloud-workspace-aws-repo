@@ -25,7 +25,7 @@ provider "aws" {
 module "eip" {
   source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_elastic_ip"  
   version = "1.0.0"
-  count  = var.aws_eip_allocation_id == "" ? 1 : 0
+  count  = var.aws_eip_allocation_id == "" || var.aws_eip_allocation_id == null  ? 1 : 0
   aws_eip_name                 = var.aws_eip_name
   aws_eip_vpc                  = var.aws_eip_vpc
   aws_eip_network_border_group = var.aws_region
