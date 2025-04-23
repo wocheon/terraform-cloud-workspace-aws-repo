@@ -65,6 +65,7 @@ variable "ebs_tags" {
 variable "ebs_snapshot_volume_id" {
   description = "The ID of the EBS volume to snapshot"
   type        = string
+  default     = null
 }
 
 variable "ebs_snapshot_description" {
