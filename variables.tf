@@ -37,7 +37,7 @@ variable "ebs_throughput" {
 variable "ebs_encrypted" {
   description = "Whether the volume should be encrypted"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "ebs_kms_key_id" {

@@ -22,7 +22,7 @@ provider "aws" {
 
 module "ebs_volume" {
   source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_ebs"
-  version = "1.0.7"
+  version = "1.0.8"
   ebs_availability_zone = var.ebs_availability_zone
   ebs_size              = var.ebs_size
   ebs_type              = var.ebs_type
@@ -37,7 +37,7 @@ module "ebs_volume" {
 
 module "ebs_snapshot" {
   source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_ebs_snapshot"
-  version = "1.0.7"  
+  version = "1.0.8"  
   #ebs_snapshot_volume_id              = var.ebs_snapshot_volume_id
   ebs_snapshot_volume_id              = module.ebs_volume.volume_id
   ebs_snapshot_description            = var.ebs_snapshot_description
