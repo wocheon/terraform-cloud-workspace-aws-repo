@@ -27,7 +27,7 @@ locals {
 # S3 버킷 생성
 module "s3_bucket" {
   source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_s3_bucket"
-  version = local.module_version
+  version = "1.0.3"
   aws_s3_bucket               = var.aws_s3_bucket  
   aws_s3_force_destroy        = var.aws_s3_force_destroy
   aws_s3_object_lock_enabled  = var.aws_s3_object_lock_enabled
@@ -38,7 +38,7 @@ module "s3_bucket" {
 # 버전 관리 활성화
 module "s3_versioning" {
   source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_s3_versioning"
-  version = local.module_version
+  version = "1.0.3"
   aws_s3_bucket             = module.s3_bucket.bucket_id
   aws_s3_version_enabled    = var.aws_s3_version_enabled 
   aws_s3_version_mfa_delete = var.aws_s3_version_mfa_delete
@@ -47,7 +47,7 @@ module "s3_versioning" {
 # 웹사이트 호스팅 설정
 module "s3_website" {
   source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_s3_website"
-  version = local.module_version
+  version = "1.0.3"
   aws_s3_bucket                 = module.s3_bucket.bucket_id
   aws_s3_index_document         = var.aws_s3_index_document
   aws_s3_error_document         = var.aws_s3_error_document
@@ -57,7 +57,7 @@ module "s3_website" {
 # Access Point 설정
 module "s3_access_point" {
   source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_s3_access_point"
-  version = local.module_version
+  version = "1.0.3"
   aws_s3_bucket                 = module.s3_bucket.bucket_id
   aws_s3_access_point_name      = var.aws_s3_access_point_name  
   aws_s3_access_point_policy    = var.aws_s3_access_point_policy
@@ -68,7 +68,7 @@ module "s3_access_point" {
 # Public Accees 설정 
 module "s3_account_public_access_block" {
   source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_s3_account_public_access_block"
-  version = local.module_version
+  version = "1.0.3"
   aws_s3_bucket                       = module.s3_bucket.bucket_id
   aws_s3_apab_block_public_acls       = var.aws_s3_apab_block_public_acls
   aws_s3_apab_block_public_policy     = var.aws_s3_apab_block_public_policy
@@ -80,7 +80,7 @@ module "s3_account_public_access_block" {
 module "s3_bucket_acl" {
   depends_on = [module.s3_account_public_access_block]  
   source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_s3_acl"
-  version = local.module_version
+  version = "1.0.3"
   aws_s3_bucket = module.s3_bucket.bucket_id
   aws_s3_acl    = var.aws_s3_acl
 }
