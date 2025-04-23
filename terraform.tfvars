@@ -9,7 +9,7 @@ ebs_type              = "gp3"
 #ebs_iops              = 3000
 #ebs_throughput        = 125
 ebs_encrypted         = false
-ebs_source_snapshot   = "ami-0d5bb3742db8fc264"
+ebs_source_snapshot   = "snap-0656b23e1a71e04d4"
 ebs_tags = {
   Name = "example-ebs-volume"
 }
