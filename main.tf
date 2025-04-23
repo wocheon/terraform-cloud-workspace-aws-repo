@@ -39,7 +39,7 @@ module "ebs_snapshot" {
   source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_ebs_snapshot"
   version = "1.0.6"  
   #ebs_snapshot_volume_id              = var.ebs_snapshot_volume_id
-  ebs_snapshot_volume_id              = module.ebs_volume.ebs_volume_id
+  ebs_snapshot_volume_id              = module.ebs_volume.volume_id
   ebs_snapshot_description            = var.ebs_snapshot_description
   ebs_snapshot_storage_tier           = var.ebs_snapshot_storage_tier
   ebs_snapshot_permanent_restore      = var.ebs_snapshot_permanent_restore
