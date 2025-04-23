@@ -34,6 +34,6 @@ module "ebs_volume" {
   ebs_source_snapshot   = var.ebs_source_snapshot
 }
 
-output "ebs.volume_id" {
+output "ebs_volume_id" {
   value = module.ebs_volume.volume_id
 }
