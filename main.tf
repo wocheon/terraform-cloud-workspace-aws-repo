@@ -79,7 +79,7 @@ module "s3_account_public_access_block" {
 # ACL 설정
 module "s3_bucket_acl" {
   depends_on = [module.s3_account_public_access_block]  
-  source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_s3_bucket_acl"
+  source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_s3_acl"
   version = local.module_version
   aws_s3_bucket = module.s3_bucket.bucket_id
   aws_s3_acl    = var.aws_s3_acl
