@@ -20,39 +20,49 @@ provider "aws" {
   region = var.aws_region
 }
 
-module "ebs_volume" {
+
+# S3 버킷 생성
+module "s3_bucket" {
   source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_ebs"
-  version = "1.0.8"
-  ebs_availability_zone = var.ebs_availability_zone
-  ebs_size              = var.ebs_size
-  ebs_type              = var.ebs_type
-  ebs_iops              = var.ebs_iops
-  ebs_throughput        = var.ebs_throughput
-  ebs_encrypted         = var.ebs_encrypted
-  ebs_kms_key_id        = var.ebs_kms_key_id
-  ebs_tags              = var.ebs_tags
-  ebs_source_snapshot   = var.ebs_source_snapshot
+  version = "1.0.9"
+  aws_s3_bucket               = var.aws_s3_bucket
+  aws_s3_acl                  = var.aws_s3_acl
+  aws_s3_force_destroy        = var.aws_s3_force_destroy
+  aws_s3_object_lock_enabled  = var.aws_s3_object_lock_enabled
+  aws_s3_tags                 = var.aws_s3_tags
 }
 
-
-module "ebs_snapshot" {
-  source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_ebs_snapshot"
-  version = "1.0.8"  
-  #ebs_snapshot_volume_id              = var.ebs_snapshot_volume_id
-  ebs_snapshot_volume_id              = module.ebs_volume.volume_id
-  ebs_snapshot_description            = var.ebs_snapshot_description
-  ebs_snapshot_storage_tier           = var.ebs_snapshot_storage_tier
-  ebs_snapshot_permanent_restore      = var.ebs_snapshot_permanent_restore
-  ebs_snapshot_temporary_restore_days = var.ebs_snapshot_temporary_restore_days
-  ebs_snapshot_tags                   = var.ebs_snapshot_tags
+# 버전 관리 활성화
+module "s3_versioning" {
+  source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_ebs"
+  version = "1.0.9"
+  aws_s3_bucket             = module.s3_bucket.bucket_id
+  aws_s3_version_enabled    = var.aws_s3_version_enabled 
+  aws_s3_version_mfa_delete = var.aws_s3_version_mfa_delete
 }
 
-
-output "ebs_volume_id" {
-  value = module.ebs_volume.volume_id
+# 웹사이트 호스팅 설정
+module "s3_website" {
+  source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_ebs"
+  version = "1.0.9"
+  aws_s3_bucket                 = module.s3_bucket.bucket_id
+  aws_s3_index_document         = var.aws_s3_index_document
+  aws_s3_error_document         = var.aws_s3_error_document
+  aws_s3_redirect_routing_rules = var.aws_s3_redirect_routing_rules
 }
 
-output "snapshot_id" {
-  description = "The ID of the created snapshot"
-  value       = module.ebs_snapshot.snapshot_id
+output "bucket_id" {
+  value = module.s3_bucket.bucket_id
+}
+
+output "bucket_arn" {
+  value = module.s3_bucket.bucket_arn
+}
+
+output "versioning_status" {
+  value = module.s3_versioning.versioning_status
+}
+
+output "website_endpoint" {
+  value = module.s3_website.website_endpoint
 }

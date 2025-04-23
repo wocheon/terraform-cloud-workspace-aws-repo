@@ -2,27 +2,32 @@
 
 aws_region         = "ap-northeast-2"
 
-### AWS EBS Configs ###
-ebs_availability_zone = "ap-northeast-2a"
-ebs_size              = 10
-ebs_type              = "gp3"
-#ebs_iops              = 3000
-#ebs_throughput        = 125
-ebs_encrypted         = false
-ebs_source_snapshot   = "snap-0656b23e1a71e04d4"
-ebs_tags = {
-  Name = "example-ebs-volume"
-}
+### AWS S3 Bucket Config ###
 
-### AWS EBS Snapshot Configs ###
+aws_s3_bucket               = "terraform-aws-test-buckect-ciw0707"
+aws_s3_acl                  = "private"
+aws_s3_force_destroy        = true
+aws_s3_object_lock_enabled  = true
+aws_s3_tags                 = { Name = "terraform-aws-test-buckect-ciw0707" , User = "ciw0707" }
 
-#ebs_snapshot_volume_id               = "vol-0a1b2c3d4e5f6g7h8"
-ebs_snapshot_description            = "Daily backup snapshot"
-ebs_snapshot_storage_tier           = "standard"
-ebs_snapshot_permanent_restore      = false
-ebs_snapshot_temporary_restore_days = null
+### AWS S3 Bucket Versioning Config ###
 
-ebs_snapshot_tags = {
-  Name        = "terrafrom-aws-snapshot-test"
-  Environment = "dev"
-}
+aws_s3_version_enabled      = true
+aws_s3_version_mfa_delete   = false
+
+### AWS S3 Bucket Website Config ###
+
+aws_s3_index_document         = "index.html"
+aws_s3_error_document         = "error.html"
+
+aws_s3_redirect_routing_rules = [
+    {
+      condition = {
+        key_prefix_equals = "docs/"
+      }
+      redirect = {
+        host_name = "docs.example.com"
+        protocol  = "https"
+      }
+    }
+  ]

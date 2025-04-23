@@ -5,95 +5,69 @@ variable "aws_region" {
   type        = string
 }
 
-### AWS EBS Configs ###
-variable "ebs_availability_zone" {
-  description = "The AZ where the EBS volume will be created"
+### AWS S3 Bucket Config ###
+
+variable "aws_s3_bucket" {
+  type = string
+}
+
+variable "aws_s3_acl" {
+  type    = string
+  default = "private"
+}
+
+variable "aws_s3_force_destroy" {
+  type    = bool
+  default = false
+}
+
+variable "aws_s3_object_lock_enabled" {
+  type    = bool
+  default = false
+}
+
+variable "aws_s3_tags" {
+  type    = map(string)
+  default = {}
+}
+
+### AWS S3 Bucket Versioning Config ###
+
+variable "aws_s3_version_enabled" {
+  type    = bool
+  default = true
+}
+
+variable "aws_s3_version_mfa_delete" {
+  type    = bool
+  default = false
+}
+
+### AWS S3 Bucket Website Config ###
+
+
+variable "aws_s3_index_document" {
   type        = string
+  description = "Index document (e.g., index.html)"
+  default     = "index.html"
 }
 
-variable "ebs_size" {
-  description = "The size of the drive in GiBs"
-  type        = number
-}
-
-variable "ebs_type" {
-  description = "The type of EBS volume"
+variable "aws_s3_error_document" {
   type        = string
-  default     = "gp3"
+  description = "Error document (e.g., error.html)"
+  default     = error.html
 }
 
-variable "ebs_iops" {
-  description = "The amount of provisioned IOPS"
-  type        = number
-  default     = null
+variable "aws_s3_redirect_routing_rules" {
+  type = list(object({
+    condition = object({
+      key_prefix_equals = string
+    })
+    redirect = object({
+      host_name = string
+      protocol  = string
+    })
+  }))
+  default = []
 }
 
-variable "ebs_throughput" {
-  description = "The throughput to provision in MiB/s (only for gp3)"
-  type        = number
-  default     = null
-}
-
-variable "ebs_encrypted" {
-  description = "Whether the volume should be encrypted"
-  type        = bool
-  default     = false
-}
-
-variable "ebs_kms_key_id" {
-  description = "The full ARN of the KMS key to use when encrypting the volume"
-  type        = string
-  default     = null
-}
-
-variable "ebs_source_snapshot" {
-  description = "The Source Snapshot ID of volume"
-  type        = string
-  default     = null
-}
-
-variable "ebs_tags" {
-  description = "Tags to assign to the volume"
-  type        = map(string)
-  default     = {}
-}
-
-
-### AWS EBS Snapshot Configs ###
-
-
-variable "ebs_snapshot_volume_id" {
-  description = "The ID of the EBS volume to snapshot"
-  type        = string
-  default     = null
-}
-
-variable "ebs_snapshot_description" {
-  description = "A description for the snapshot"
-  type        = string
-  default     = "Snapshot created by Terraform"
-}
-
-variable "ebs_snapshot_storage_tier" {
-  description = "Specifies the storage tier (standard or archive)"
-  type        = string
-  default     = "standard"
-}
-
-variable "ebs_snapshot_permanent_restore" {
-  description = "Indicates whether to permanently restore a snapshot that was archived"
-  type        = bool
-  default     = false
-}
-
-variable "ebs_snapshot_temporary_restore_days" {
-  description = "Number of days to temporarily restore a snapshot from the archive tier"
-  type        = number
-  default     = null
-}
-
-variable "ebs_snapshot_tags" {
-  description = "Tags to assign to the snapshot"
-  type        = map(string)
-  default     = {}
-}
