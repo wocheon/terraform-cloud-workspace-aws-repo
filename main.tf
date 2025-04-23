@@ -31,6 +31,7 @@ module "s3_bucket" {
   aws_s3_tags                 = var.aws_s3_tags
 }
 
+
 # 버전 관리 활성화
 module "s3_versioning" {
   source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_s3_versioning"
@@ -71,6 +72,16 @@ module "s3_account_public_access_block" {
   aws_s3_apab_ignore_public_acls      = var.aws_s3_apab_ignore_public_acls
   aws_s3_apab_restrict_public_buckets = var.aws_s3_apab_restrict_public_buckets
 }
+
+# ACL 설정
+module "s3_bucket_acl" {
+depends_on = [module.s3_account_public_access_block]  
+  source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_s3_bucket_acl"
+  version = "1.0.2"  
+  aws_s3_bucket = module.s3_bucket.bucket_id
+  aws_s3_acl    = var.aws_s3_acl
+}
+
 
 
 output "bucket_id" {
