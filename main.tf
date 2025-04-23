@@ -65,11 +65,10 @@ module "s3_access_point" {
   aws_s3_access_point_tags      = var.aws_s3_access_point_tags
 }
 
-# Public Accees 설정 
+# Public Accees 설정 (계정 전체)
 module "s3_account_public_access_block" {
   source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_s3_account_public_access_block"
-  version = "1.0.6"
-  aws_s3_bucket                       = module.s3_bucket.bucket_id
+  version = "1.0.6"  
   aws_s3_apab_block_public_acls       = var.aws_s3_apab_block_public_acls
   aws_s3_apab_block_public_policy     = var.aws_s3_apab_block_public_policy
   aws_s3_apab_ignore_public_acls      = var.aws_s3_apab_ignore_public_acls
