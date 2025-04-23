@@ -5,7 +5,6 @@ aws_region         = "ap-northeast-2"
 ### AWS S3 Bucket Config ###
 
 aws_s3_bucket               = "terraform-aws-test-buckect-ciw0707"
-aws_s3_acl                  = "private"
 aws_s3_force_destroy        = true
 aws_s3_object_lock_enabled  = true
 aws_s3_tags                 = { Name = "terraform-aws-test-buckect-ciw0707" , User = "ciw0707" }
