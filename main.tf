@@ -57,7 +57,7 @@ module "s3_website" {
 # Access Point 설정
 module "s3_access_point" {
   source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_s3_access_point"
-  version = "1.0.5"
+  version = "1.0.6"
   aws_s3_bucket                 = module.s3_bucket.bucket_id
   aws_s3_access_point_name      = var.aws_s3_access_point_name  
   aws_s3_access_point_policy    = var.aws_s3_access_point_policy
@@ -68,7 +68,7 @@ module "s3_access_point" {
 # Public Accees 설정 
 module "s3_account_public_access_block" {
   source  = "app.terraform.io/terraform_cloud_wocheon/aws-module-registry/aws//modules/aws_s3_account_public_access_block"
-  version = "1.0.5"
+  version = "1.0.6"
   aws_s3_bucket                       = module.s3_bucket.bucket_id
   aws_s3_apab_block_public_acls       = var.aws_s3_apab_block_public_acls
   aws_s3_apab_block_public_policy     = var.aws_s3_apab_block_public_policy
