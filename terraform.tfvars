@@ -39,11 +39,10 @@ aws_s3_access_point_vpc_id  = "vpc-0594829912674d4b3"
 aws_s3_access_point_tags  = { Name = "terraform-aws-test-buckect-ciw0707" , User = "ciw0707" }
 
 ### AWS S3 Account Public Access Block Config ###
-aws_s3_apab_block_public_acls       = true
-aws_s3_apab_block_public_policy     = true
-aws_s3_apab_ignore_public_acls      = true
-aws_s3_apab_restrict_public_buckets = true
+aws_s3_apab_block_public_acls       = false
+aws_s3_apab_block_public_policy     = false
+aws_s3_apab_ignore_public_acls      = false
+aws_s3_apab_restrict_public_buckets = false
 
 ### AWS S3 ACL Config ###
-
-aws_s3_acl  = "private"
+#aws_s3_acl  = "private"

@@ -122,5 +122,5 @@ variable "aws_s3_apab_restrict_public_buckets" {
 ### AWS S3 ACL config ###
 variable "aws_s3_acl" {
   type    = string
-  default = "private"
+  default = null
 }
