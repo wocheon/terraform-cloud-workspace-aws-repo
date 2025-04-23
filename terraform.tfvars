@@ -47,4 +47,4 @@ aws_s3_apab_restrict_public_buckets = true
 
 ### AWS S3 ACL Config ###
 
-aws_s3_acl  = "public-read"
+aws_s3_acl  = "private"
