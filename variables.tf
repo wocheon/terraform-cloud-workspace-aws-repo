@@ -52,7 +52,6 @@ variable "ebs_source_snapshot" {
   default     = null
 }
 
-
 variable "ebs_tags" {
   description = "Tags to assign to the volume"
   type        = map(string)
